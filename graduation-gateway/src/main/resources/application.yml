@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: api_router
+          uri: http://localhost:9901
+          predicates:
+            - Path=/api/**
+        - id: portal_router
+          uri: http://localhost:9903
+          predicates:
+            - Path=/portal/**
