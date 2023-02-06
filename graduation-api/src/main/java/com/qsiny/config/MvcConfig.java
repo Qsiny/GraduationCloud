@@ -1,4 +1,4 @@
-package com.qsiny.configuration;
+package com.qsiny.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

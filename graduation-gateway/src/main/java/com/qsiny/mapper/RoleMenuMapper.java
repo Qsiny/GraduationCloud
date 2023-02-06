@@ -1,7 +1,7 @@
 package com.qsiny.mapper;
 
-import com.qsiny.entity.RoleMenu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.qsiny.entity.RoleMenu;
 
 /**
 * @author Qin

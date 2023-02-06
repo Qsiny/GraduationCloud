@@ -35,4 +35,7 @@
         create_time,update_id,update_time,
         remark
     </sql>
+    <select id="selectPermsByUserId" resultType="java.lang.String">
+
+    </select>
 </mapper>
