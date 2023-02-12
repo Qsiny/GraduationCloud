@@ -6,5 +6,5 @@ package com.qsiny.constant;
  */
 public class UserConstant {
 
-    public static final String AUTH_PRE = "D_";
+    public static final String AUTH_PRE = "auth_";
 }

@@ -1,24 +1,22 @@
-package com.qsiny.serivice.impl;
-
+package com.qsiny.service.impl;
 
 import com.qsiny.entity.CustomizeException;
 import com.qsiny.entity.LoginUser;
 import com.qsiny.entity.User;
 import com.qsiny.mapper.MenuMapper;
 import com.qsiny.mapper.UserMapper;
-
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * @author Qin
- * @date 2023/2/5 16:13
- */
 @Service
-public class UserDetailsServiceImpl  {
+public class UserDetailsServiceImpl implements UserDetailsService {
+
 
     @Resource
     private UserMapper userMapper;
@@ -26,16 +24,18 @@ public class UserDetailsServiceImpl  {
     @Resource
     private MenuMapper menuMapper;
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-    public LoginUser findByUsername(String username) {
-        //和往常一样即可
+        if(!StringUtils.hasText(username)){
+            throw new CustomizeException("凭证不可为空");
+        }
         User user = userMapper.findUserByUsernameOrTel(username);
         if(user == null){
             throw new CustomizeException("用户名或密码错误");
         }
-
-        //从数据库中查询用户权限
         List<String> menus = menuMapper.selectPermsByUserId(user.getUserId());
+
         return new LoginUser(user,menus);
     }
 }

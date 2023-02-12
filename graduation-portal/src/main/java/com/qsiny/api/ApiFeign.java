@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "graduation-api")
 public interface ApiFeign {
 
-    @GetMapping("/test/test/{count}")
+    @GetMapping("/api/demo/test/{count}")
     String getCount(@PathVariable("count") Integer count);
 
 }

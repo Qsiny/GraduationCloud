@@ -4,18 +4,87 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03ab10e0-683d-42d9-ab9a-76131297c7f1" name="变更" comment="" />
+    <list default="true" id="03ab10e0-683d-42d9-ab9a-76131297c7f1" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/config/CrossConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/config/FeignConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/feign/SecurityFeign.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/filter/IgnoreFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/interceptor/FeignHeaderInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/utils/ContextUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/config/InterceptorConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-security/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/config/MvcConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/controller/AuthenticationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/controller/TestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/controller/UserInfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/filter/UserInfoFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/handler/AccessDeniedHandlerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/handler/AuthenticationEntryPointImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/AuthenticationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/UserInfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/impl/AuthenticationServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/impl/UserDetailsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/impl/UserInfoServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/utils/WebUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/resources/logback.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-api/src/main/java/com/qsiny/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-api/src/main/java/com/qsiny/controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/constant/UserConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/constant/UserConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/entity/LoginUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/entity/LoginUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/entity/ResponseResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/entity/ResponseResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/filter/TestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/filter/TestFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/mapper/MenuMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/mapper/MenuMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/mapper/RoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/mapper/RoleMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/mapper/RoleMenuMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/mapper/RoleMenuMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/mapper/UserRoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/mapper/UserRoleMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/serivice/impl/UserDetailsServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-gateway/src/main/resources/mapper/MenuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/resources/mapper/MenuMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-gateway/src/main/resources/mapper/RoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/resources/mapper/RoleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-gateway/src/main/resources/mapper/RoleMenuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/resources/mapper/RoleMenuMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-gateway/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-gateway/src/main/resources/mapper/UserRoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/resources/mapper/UserRoleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/api/ApiFeign.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/api/ApiFeign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="localRepository" value="D:\maven_local_repository" />
-        <option name="mavenHome" value="C:/Program Files/Maven/apache-maven-3.6.1" />
-        <option name="userSettingsFile" value="C:\Program Files\Maven\apache-maven-3.6.1\conf\settings.xml" />
+        <option name="localRepository" value="$USER_HOME$/devTools/maven_local_respository" />
+        <option name="mavenHome" value="$USER_HOME$/devTools/apache-maven-3.6.1" />
+        <option name="userSettingsFile" value="$USER_HOME$/devTools/apache-maven-3.6.1/conf/settings.xml" />
       </MavenGeneralSettings>
     </option>
     <option name="importingSettings">
@@ -27,6 +96,7 @@
   </component>
   <component name="MavenRunner">
     <option name="jreName" value="1.8" />
+    <option name="skipTests" value="true" />
     <option name="vmOptions" value="-DarchetypeCatalog=internal" />
   </component>
   <component name="ProjectId" id="2LEMwB7WfB8Dpz4lbkiSdpuK0rJ" />
@@ -34,14 +104,121 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/qinshouyuan/IdeaProjects/GraduationCloud/graduation-security/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;cn.yiiguxing.plugin.translate&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;648695c467dfebad3841b49e72b604dc&quot;,
+    &quot;typescript.add.unambiguous.imports.on.the.fly&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
   }
-}]]></component>
+}</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/graduation-security/src/main/resources" />
+      <recent name="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/mapper" />
+      <recent name="$PROJECT_DIR$/gruaduation-security/src/main/resources" />
+      <recent name="$PROJECT_DIR$/graduation-api/src/main/resources" />
+      <recent name="$PROJECT_DIR$/graduation-api/src/main/java/com/qsiny" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.qsiny.config" />
+      <recent name="com.qsiny.feign" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.security">
+    <configuration name="api" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="graduation-api" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qsiny.Main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="gateway" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="graduation-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qsiny.Main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="portal" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="graduation-portal" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qsiny.Main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="security" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
+      <module name="graduation-security" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qsiny.Main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.qsiny.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="security" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
+      <module name="graduation-security" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qsiny.Main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.qsiny.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="security" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="graduation-security" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qsiny.Main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.security" />
+        <item itemvalue="Spring Boot.security" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
@@ -50,7 +227,87 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1675432025229</updated>
+      <workItem from="1675694283013" duration="427000" />
+      <workItem from="1675765468581" duration="62000" />
+      <workItem from="1675765536405" duration="308000" />
+      <workItem from="1675765893773" duration="622000" />
+      <workItem from="1675767308021" duration="301000" />
+      <workItem from="1675767613947" duration="3039000" />
+      <workItem from="1675774027818" duration="3434000" />
+      <workItem from="1675785202467" duration="11000" />
+      <workItem from="1675953773468" duration="2450000" />
+      <workItem from="1675986916063" duration="60000" />
+      <workItem from="1676035028067" duration="3941000" />
+      <workItem from="1676039765318" duration="3888000" />
+      <workItem from="1676072434320" duration="4129000" />
+      <workItem from="1676076616743" duration="3547000" />
+      <workItem from="1676081974509" duration="3185000" />
+      <workItem from="1676167435105" duration="26232000" />
+      <workItem from="1676209632642" duration="656000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/graduation-api/src/main/java/com/qsiny/controller/TestController.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/controller/AuthenticationController.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/controller/TestController.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/controller/UserInfoController.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/handler/AccessDeniedHandlerImpl.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/filter/UserInfoFilter.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/filter/TestFilter.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://$USER_HOME$/devTools/maven_local_respository/org/springframework/security/spring-security-core/5.6.7/spring-security-core-5.6.7-sources.jar!/org/springframework/security/authentication/ProviderManager.java</url>
+          <line>168</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/impl/UserDetailsServiceImpl.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/impl/UserInfoServiceImpl.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
