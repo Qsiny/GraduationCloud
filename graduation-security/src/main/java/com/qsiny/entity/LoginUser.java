@@ -2,7 +2,9 @@ package com.qsiny.entity;
 
 import com.alibaba.fastjson2.annotation.JSONField;
 import lombok.Data;
-
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
@@ -13,18 +15,28 @@ import java.util.stream.Collectors;
  * @date 2023/2/5 16:48
  */
 @Data
-public class LoginUser  {
-    private final User user;
+public class LoginUser  implements UserDetails {
+    private User user;
 
-    private final List<String> permissions;
+    private List<String> permissions;
 
-    public List<String> getPermissions() {
-        return permissions;
-    }
+    @JSONField(serialize = false)
+    private List<GrantedAuthority> authorities;
+
 
     public LoginUser(User user, List<String> permissions) {
         this.user = user;
         this.permissions = permissions;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if(authorities != null){
+            return authorities;
+        }
+        authorities = permissions.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+
+        return authorities;
     }
 
     public String getPassword() {
@@ -35,7 +47,7 @@ public class LoginUser  {
         return user.getUserName();
     }
 
-    //todo 修改这样
+    //todo 这里根据user信息来设置
     public boolean isAccountNonExpired() {
         return true;
     }

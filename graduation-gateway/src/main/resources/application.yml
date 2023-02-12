@@ -10,3 +10,7 @@ spring:
           uri: http://localhost:9903
           predicates:
             - Path=/portal/**
+        - id: security_router
+          uri: http://localhost:9905
+          predicates:
+            - Path=/security/**
