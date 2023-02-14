@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qsiny.mapper.DepartmentMapper">
+
+    <resultMap id="BaseResultMap" type="com.qsiny.entity.Department">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="departmentName" column="department_name" jdbcType="VARCHAR"/>
+            <result property="departmentEnglishName" column="department_english_name" jdbcType="VARCHAR"/>
+            <result property="code" column="code" jdbcType="TINYINT"/>
+            <result property="dean" column="dean" jdbcType="VARCHAR"/>
+            <result property="deanId" column="dean_id" jdbcType="BIGINT"/>
+            <result property="buildTime" column="build_time" jdbcType="TIMESTAMP"/>
+            <result property="introduction" column="introduction" jdbcType="VARCHAR"/>
+            <result property="createId" column="create_id" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateId" column="update_id" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,department_name,department_english_name,
+        code,dean,dean_id,
+        build_time,introduction,create_id,
+        create_time,update_id,update_time
+    </sql>
+</mapper>

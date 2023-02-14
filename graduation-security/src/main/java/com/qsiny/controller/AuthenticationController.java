@@ -16,7 +16,7 @@ public class AuthenticationController {
         if(!StringUtils.hasText(requestUrl)){
             return ResponseResult.build(500,"当前url为空");
         }
-
+        //todo 这里对url 所拥有的权限进行限制
             System.out.println(requestUrl);
         return ResponseResult.build(200,"ceshi");
     }

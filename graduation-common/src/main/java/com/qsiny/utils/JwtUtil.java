@@ -20,7 +20,9 @@ public class JwtUtil {
 
 
     //有效期为
-    public static final Long JWT_TTL = 7*24*60 * 60 *1000L;// 60 * 60 *1000  一天
+    public static final Long SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000L;// 60 * 60 *1000  一天
+    public static final Long ONE_DAY =  24 * 60 * 60 * 1000L;// 60 * 60 *1000  一天
+
     //设置秘钥明文
     public static final String JWT_KEY = "qsin";
 
@@ -48,6 +50,10 @@ public class JwtUtil {
         JwtBuilder builder = getJwtBuilder(subject, ttlMillis, getUUID());// 设置过期时间
         return builder.compact();
     }
+    public static String createJWT(String subject, Long ttlMillis,String uuid) {
+        JwtBuilder builder = getJwtBuilder(subject, ttlMillis, uuid);// 设置过期时间
+        return builder.compact();
+    }
 
     private static JwtBuilder getJwtBuilder(String subject, Long ttlMillis, String uuid) {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
@@ -55,7 +61,7 @@ public class JwtUtil {
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
         if(ttlMillis==null){
-            ttlMillis=JwtUtil.JWT_TTL;
+            ttlMillis=JwtUtil.ONE_DAY;
         }
         long expMillis = nowMillis + ttlMillis;
         Date expDate = new Date(expMillis);
@@ -68,32 +74,13 @@ public class JwtUtil {
                 .setExpiration(expDate);
     }
 
-    /**
-     * 创建token
-     * @param id
-     * @param subject
-     * @param ttlMillis
-     * @return
-     */
-    public static String createJWT(String id, String subject, Long ttlMillis) {
-        JwtBuilder builder = getJwtBuilder(subject, ttlMillis, id);// 设置过期时间
-        return builder.compact();
-    }
-
     public static void main(String[] args) throws Exception {
-        String jwt = createJWT("1", "zhangsan", JWT_TTL);
-        Claims claims1 = parseJWT(jwt);
+        String aaa = createJWT("aaa", 200L);
 
-        System.out.println("id:" + claims1.getId());
-        System.out.println("username:" + claims1.getSubject());
-        String jwt1 = JwtUtil.createJWT("1","user:12",JWT_TTL);
-        System.out.println(jwt1);
-        Claims claims = parseJWT(jwt1);
+        Thread.sleep(500L);
+        String id1 = parseJWT(aaa).getId();
 
-//
-        String subject = claims.getSubject();
-        System.out.println(claims.getId());
-        System.out.println(subject);
+        System.out.println(id1);
     }
 
     /**

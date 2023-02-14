@@ -34,11 +34,11 @@ public class AllFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
-        if (Boolean.TRUE.equals(exchange.getAttribute(ATTRIBUTE_IGNORE_FILTER))) {
-            ContextUtils.setToken(exchange.getRequest().getHeaders().getFirst("authorization"));
+        if (Boolean.FALSE.equals(exchange.getAttribute(ATTRIBUTE_IGNORE_FILTER))) {
+            ContextUtils.setToken(exchange.getRequest().getHeaders().getFirst("Authorization"));
             //这里调用security的权限校验接口
             CompletableFuture<ResponseResult<Void>> completableFuture = CompletableFuture.supplyAsync
-                    (()-> securityFeign.PermissionAuthentication("asd"));
+                    (()-> securityFeign.PermissionAuthentication(request.getPath().toString()));
 
             try {
                 completableFuture.get();

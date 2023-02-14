@@ -7,6 +7,7 @@ import com.qsiny.entity.LoginUser;
 import com.qsiny.entity.ResponseResult;
 import com.qsiny.entity.User;
 import com.qsiny.mapper.UserMapper;
+import com.qsiny.po.UserInfoResponse;
 import com.qsiny.service.UserInfoService;
 import com.qsiny.service.VerifyService;
 import com.qsiny.utils.JwtUtil;
@@ -37,7 +38,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Resource
     private VerifyService verifyService;
     @Override
-    public ResponseResult<String> userLogin(String userMessage,String password) {
+    public ResponseResult<UserInfoResponse> userLogin(String userMessage,String password) {
 
 
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userMessage, password);
@@ -48,18 +49,22 @@ public class UserInfoServiceImpl implements UserInfoService {
         }
 
 
-        String userId = String.valueOf(loginUser.getUser().getUserId());
+        Long userId = loginUser.getUser().getUserId();
         String userName = loginUser.getUser().getUserName();
+        //这里用uuid来代替id
+        String uuid = JwtUtil.getUUID();
         //通过userId: 加id 放入redis中，loginUser
-        redisCache.setCacheObject( RedisConstant.AUTH_PRE+userId,loginUser,7, TimeUnit.DAYS);
+        redisCache.setCacheObject( RedisConstant.TOKEN_PRE+uuid,loginUser,7, TimeUnit.DAYS);
         //生成一个token返回给前端
-        String token = JwtUtil.createJWT(userId, userName, JwtUtil.JWT_TTL);
 
-        return ResponseResult.build(200,"成功",token);
+        String token = JwtUtil.createJWT(userName, JwtUtil.ONE_DAY,uuid);
+        String reFlushToken = JwtUtil.createJWT(userName,JwtUtil.SEVEN_DAYS,uuid);
+
+        return ResponseResult.build(200,"成功",new UserInfoResponse(userId,userName,token,reFlushToken));
     }
 
     @Override
-    public ResponseResult<String> register(String username, String password, String phonenumber, String code) {
+    public ResponseResult<UserInfoResponse> register(String username, String password, String phonenumber, String code) {
         
         //校验CODE
         if(!verifyService.verifyPhoneCode(phonenumber,code)){
@@ -76,11 +81,13 @@ public class UserInfoServiceImpl implements UserInfoService {
         LoginUser loginUser = new LoginUser(user,null);
 
         //通过userId: 加id 放入redis中，loginUser
-        redisCache.setCacheObject( RedisConstant.AUTH_PRE+2,loginUser,7, TimeUnit.DAYS);
+        String uuid = JwtUtil.getUUID();
+        redisCache.setCacheObject( RedisConstant.TOKEN_PRE+uuid,loginUser,7, TimeUnit.DAYS);
         //生成一个token返回给前端
-        String token = JwtUtil.createJWT("2", username, JwtUtil.JWT_TTL);
+        String token = JwtUtil.createJWT( username, JwtUtil.ONE_DAY,uuid);
+        String reFlushToken = JwtUtil.createJWT( username, JwtUtil.SEVEN_DAYS,uuid);
 
-        return ResponseResult.build(200,"成功",token);
+        return ResponseResult.build(200,"成功",new UserInfoResponse(user.getUserId(),username,token,reFlushToken));
 
     }
     

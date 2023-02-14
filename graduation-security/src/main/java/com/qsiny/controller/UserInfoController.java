@@ -2,6 +2,7 @@ package com.qsiny.controller;
 
 import com.qsiny.constant.ResponseStatusCode;
 import com.qsiny.entity.ResponseResult;
+import com.qsiny.po.UserInfoResponse;
 import com.qsiny.service.UserInfoService;
 import com.qsiny.service.VerifyService;
 import org.springframework.util.StringUtils;
@@ -23,7 +24,7 @@ public class UserInfoController {
     private VerifyService verifyService;
 
     @PostMapping("/userLogin")
-    public ResponseResult<String> userLogin(String userNameOrTel,String password){
+    public ResponseResult<UserInfoResponse> userLogin(String userNameOrTel, String password){
         if(!StringUtils.hasText(userNameOrTel)||!StringUtils.hasText(password)){
             return ResponseResult.build(ResponseStatusCode.SERVER_ERROR,"用户名或密码为空");
         }
@@ -31,7 +32,7 @@ public class UserInfoController {
     }
 
     @PostMapping("/userRegister")
-    public ResponseResult<String> userRegister(String username,String password,String phonenumber,String code){
+    public ResponseResult<UserInfoResponse> userRegister(String username,String password,String phonenumber,String code){
         if(!StringUtils.hasText(username)||!StringUtils.hasText(password)
                 ||!StringUtils.hasText(phonenumber)||!StringUtils.hasText(code)){
             return ResponseResult.build(ResponseStatusCode.SERVER_ERROR,"必须填写的信息未填写");

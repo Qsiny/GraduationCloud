@@ -2,7 +2,6 @@ package com.qsiny.controller;
 
 import com.qsiny.entity.ResponseResult;
 import com.qsiny.entity.User;
-import com.qsiny.utils.JwtUtil;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,9 +20,6 @@ public class UserController {
         System.out.println(user);
 
 
-
-        String jwt = JwtUtil.createJWT(user.getUserId().toString(), user.getUserName(), JwtUtil.JWT_TTL);
-
-        return ResponseResult.build(200,"成功",jwt);
+        return ResponseResult.build(200,"成功");
     }
 }

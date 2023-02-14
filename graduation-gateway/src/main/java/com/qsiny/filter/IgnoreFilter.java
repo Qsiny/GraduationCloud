@@ -16,6 +16,8 @@ public class IgnoreFilter implements GlobalFilter, Ordered {
         String ignore = exchange.getRequest().getHeaders().getFirst("ignore");
         if("Y".equals(ignore)){
             exchange.getAttributes().put(AllFilter.ATTRIBUTE_IGNORE_FILTER, true);
+        }else{
+            exchange.getAttributes().put(AllFilter.ATTRIBUTE_IGNORE_FILTER, false);
         }
         return chain.filter(exchange);
     }
