@@ -4,38 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03ab10e0-683d-42d9-ab9a-76131297c7f1" name="变更" comment="feat: 提交用户登陆以及收发验证码的模块">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/po/UserInfoResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/controller/DepartmentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/mapper/DepartmentMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/mapper/MenuMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/mapper/RoleMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/mapper/RoleMenuMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/mapper/UserMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/mapper/UserRoleMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/service/DepartmentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/service/impl/DepartmentServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/resources/logback.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/resources/mapper/DepartmentMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/resources/mapper/MenuMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/resources/mapper/RoleMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/resources/mapper/RoleMenuMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/resources/mapper/UserRoleMapper.xml" afterDir="false" />
+    <list default="true" id="03ab10e0-683d-42d9-ab9a-76131297c7f1" name="变更" comment="feat: 后端处理请求拦截，维护登陆注册的返回，学院信息的新加">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/constant/RedisConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/constant/RedisConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/utils/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/utils/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/filter/AllFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/filter/AllFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/filter/IgnoreFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/filter/IgnoreFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/intercepter/RequestInterceptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/controller/AuthenticationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/controller/UserInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/controller/UserInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/filter/UserInfoFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/filter/UserInfoFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/UserInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/UserInfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/impl/UserInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/impl/UserInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-common/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/utils/FastJsonRedisSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/utils/FastJsonRedisSerializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-portal/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-portal/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-security/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/entity/LoginUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/entity/LoginUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/handler/AccessDeniedHandlerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/handler/AccessDeniedHandlerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/handler/AuthenticationEntryPointImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/handler/AuthenticationEntryPointImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,36 +64,36 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "/Users/qinshouyuan/IdeaProjects/GraduationCloud/graduation-portal/src/main/resources/mapper",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "模块",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "cn.yiiguxing.plugin.translate",
-    "spring.configuration.checksum": "648695c467dfebad3841b49e72b604dc",
-    "typescript.add.unambiguous.imports.on.the.fly": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/qinshouyuan/IdeaProjects/GraduationCloud/graduation-portal/src/main/resources/mapper&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;cn.yiiguxing.plugin.translate&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;648695c467dfebad3841b49e72b604dc&quot;,
+    &quot;typescript.add.unambiguous.imports.on.the.fly&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -130,6 +110,7 @@
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.qsiny.config" />
+      <recent name="com.qsiny.utils" />
       <recent name="com.qsiny.feign" />
     </key>
   </component>
@@ -242,7 +223,8 @@
       <workItem from="1676167435105" duration="26232000" />
       <workItem from="1676209632642" duration="1102000" />
       <workItem from="1676286567804" duration="7095000" />
-      <workItem from="1676374408938" duration="8360000" />
+      <workItem from="1676374408938" duration="10080000" />
+      <workItem from="1676460673611" duration="6979000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 提交security模块和gateway模块">
       <created>1676210726409</created>
@@ -251,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676210726409</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: 后端处理请求拦截，维护登陆注册的返回，学院信息的新加">
+      <created>1676389989216</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1676389989216</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,7 +259,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: 提交security模块和gateway模块" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 提交security模块和gateway模块" />
+    <MESSAGE value="feat: 后端处理请求拦截，维护登陆注册的返回，学院信息的新加" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 后端处理请求拦截，维护登陆注册的返回，学院信息的新加" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -312,13 +302,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/filter/UserInfoFilter.java</url>
-          <line>30</line>
+          <line>34</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/impl/UserInfoServiceImpl.java</url>
           <line>60</line>
           <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/filter/UserInfoFilter.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="50" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

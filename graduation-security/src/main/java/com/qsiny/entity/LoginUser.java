@@ -1,7 +1,9 @@
 package com.qsiny.entity;
 
-import com.alibaba.fastjson2.annotation.JSONField;
+import com.alibaba.fastjson.annotation.JSONField;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +17,8 @@ import java.util.stream.Collectors;
  * @date 2023/2/5 16:48
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class LoginUser  implements UserDetails {
     private User user;
 
