@@ -6,7 +6,6 @@ import com.qsiny.po.UserInfoResponse;
 import com.qsiny.service.UserInfoService;
 import com.qsiny.service.VerifyService;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,11 +23,11 @@ public class UserInfoController {
     private VerifyService verifyService;
 
     @PostMapping("/userLogin")
-    public ResponseResult<UserInfoResponse> userLogin(String userNameOrTel, String password){
+    public ResponseResult<UserInfoResponse> userLogin(String userNameOrTel, String password,Boolean rememberMe,Integer loginWay){
         if(!StringUtils.hasText(userNameOrTel)||!StringUtils.hasText(password)){
             return ResponseResult.build(ResponseStatusCode.SERVER_ERROR,"用户名或密码为空");
         }
-        return userInfoService.userLogin(userNameOrTel,password);
+        return userInfoService.userLogin(userNameOrTel,password,rememberMe,loginWay);
     }
 
     @PostMapping("/userRegister")
@@ -41,7 +40,7 @@ public class UserInfoController {
         return userInfoService.register(username,password,phonenumber,code);
     }
 
-    @GetMapping("/getChecksum")
+    @PostMapping("/getChecksum")
     public ResponseResult<Void> getChecksum(String phonenumber){
         if(!StringUtils.hasText(phonenumber)){
             return ResponseResult.build(ResponseStatusCode.SERVER_ERROR,"电话号码输入为空");

@@ -11,6 +11,7 @@ import com.qsiny.po.UserInfoResponse;
 import com.qsiny.service.UserInfoService;
 import com.qsiny.service.VerifyService;
 import com.qsiny.utils.JwtUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -37,10 +38,14 @@ public class UserInfoServiceImpl implements UserInfoService {
     
     @Resource
     private VerifyService verifyService;
+
+    @Value("${privateKey}")
+    private String privateKey;
+
     @Override
-    public ResponseResult<UserInfoResponse> userLogin(String userMessage,String password) {
+    public ResponseResult<UserInfoResponse> userLogin(String userMessage,String encodePassword,Boolean rememberMe,Integer loginWay) {
 
-
+        String password = verifyService.decode(encodePassword);
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userMessage, password);
         Authentication authenticate = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
         LoginUser loginUser = (LoginUser) authenticate.getPrincipal();
@@ -64,10 +69,11 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public ResponseResult<UserInfoResponse> register(String username, String password, String phonenumber, String code) {
-        
+    public ResponseResult<UserInfoResponse> register(String username, String encodePassword, String encodePhonenumber, String code) {
+        String password = verifyService.decode(encodePassword);
+        String phonenumber = verifyService.decode(encodePhonenumber);
         //校验CODE
-        if(!verifyService.verifyPhoneCode(phonenumber,code)){
+        if(!verifyService.verifyPhoneCode(encodePhonenumber,code)){
             return ResponseResult.build(ResponseStatusCode.SERVER_ERROR,"验证码错误");
         }
         String encode = passwordEncoder.encode(password);
