@@ -11,5 +11,5 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface SecurityFeign {
 
     @PostMapping(value = "security/authentication/PermissionAuthentication")
-    ResponseResult<Void> PermissionAuthentication(@RequestBody String requestUrl);
+    ResponseResult<Boolean> PermissionAuthentication(@RequestBody String requestUrl);
 }

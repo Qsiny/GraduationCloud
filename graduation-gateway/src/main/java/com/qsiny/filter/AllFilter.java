@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
@@ -37,14 +38,24 @@ public class AllFilter implements GlobalFilter, Ordered {
         if (Boolean.FALSE.equals(exchange.getAttribute(ATTRIBUTE_IGNORE_FILTER))) {
             ContextUtils.setToken(exchange.getRequest().getHeaders().getFirst("Authorization"));
             //这里调用security的权限校验接口
-            CompletableFuture<ResponseResult<Void>> completableFuture = CompletableFuture.supplyAsync
+            CompletableFuture<ResponseResult<Boolean>> completableFuture = CompletableFuture.supplyAsync
                     (()-> securityFeign.PermissionAuthentication(request.getPath().toString()));
 
             try {
-                completableFuture.get();
+                ResponseResult<Boolean> result = completableFuture.get();
+                if(!result.getData()){
+                    log.info("当前url访问无权限");
+                    //set response 403
+                    exchange.getResponse().setStatusCode(HttpStatus.MOVED_PERMANENTLY);
+                    return exchange.getResponse().setComplete();
+                }
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             } catch (ExecutionException e) {
+                if(e.getCause().toString().contains("302")){
+                    exchange.getResponse().setStatusCode(HttpStatus.FOUND);
+                    return exchange.getResponse().setComplete();
+                }
                 throw new RuntimeException(e);
             }
             log.info("测试。。");

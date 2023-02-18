@@ -2,6 +2,7 @@ package com.qsiny.filter;
 
 import com.qsiny.config.RedisCache;
 import com.qsiny.constant.RedisConstant;
+import com.qsiny.constant.ResponseStatusCode;
 import com.qsiny.entity.CustomizeException;
 import com.qsiny.entity.LoginUser;
 import com.qsiny.utils.JwtUtil;
@@ -43,11 +44,10 @@ public class UserInfoFilter extends OncePerRequestFilter {
         Claims claims;
         try {
             claims = JwtUtil.parseJWT(token);
-        } catch (Exception e) {
-            if(e.getCause() instanceof ExpiredJwtException){
-                response.setStatus(501);
-                return;
-            }
+        } catch (ExpiredJwtException e) {
+            response.setStatus(ResponseStatusCode.FOUND);
+            return;
+        }catch (Exception e){
             throw new CustomizeException("token解析异常");
         }
         String uuid = claims.getId();

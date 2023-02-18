@@ -5,6 +5,7 @@ import com.qsiny.entity.ResponseResult;
 import com.qsiny.po.UserInfoResponse;
 import com.qsiny.service.UserInfoService;
 import com.qsiny.service.VerifyService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
+@Slf4j
 @RestController
 @RequestMapping("/user")
 public class UserInfoController {
@@ -49,6 +51,16 @@ public class UserInfoController {
             return ResponseResult.build(ResponseStatusCode.SERVER_ERROR,"今天以获取了3次验证码了，请明天再试");
         }
         return ResponseResult.build(ResponseStatusCode.SUCCESS_CODE,"发送成功，验证码有效期三分钟");
+    }
+
+    @PostMapping("/reFlushToken")
+    public ResponseResult<String> reFlushToken(String reFlushToken){
+        if(!StringUtils.hasText(reFlushToken)){
+            return ResponseResult.build(ResponseStatusCode.SERVER_ERROR,"刷新token为空");
+        }
+        String token = userInfoService.reFlushToken(reFlushToken);
+        log.info("刷新token成功：{}",token);
+        return ResponseResult.build(ResponseStatusCode.SUCCESS_CODE,"发送成功，验证码有效期三分钟",token);
     }
 
 

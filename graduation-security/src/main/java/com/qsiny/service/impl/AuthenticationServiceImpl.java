@@ -4,24 +4,43 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.qsiny.entity.Menu;
 import com.qsiny.mapper.MenuMapper;
 import com.qsiny.service.AuthenticationService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-import java.util.Arrays;
-import java.util.List;
 
+@Slf4j
+@Service
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Resource
     private MenuMapper menuMapper;
+
+    @Resource
+    private AuthenticationManager authenticationManager;
     @Override
     public Boolean hasAuthentication(String url) {
 
         //获取对于url所需要的权限
         Menu menu = menuMapper.selectOne(new QueryWrapper<Menu>().lambda().eq(Menu::getPath, url));
-        List<String> menus = Arrays.asList(menu.getPerms().split(","));
+        //这里如果没有配置的话，那就都不可以进入
+        if(menu== null||!StringUtils.hasText(menu.getPerms())){
+            log.info("当前url暂未配置");
+            return false;
+        }
+        String[] menus = menu.getPerms().split(",");
         //跟现在所拥有的权限做对比，查看是否有交集，如果有，则通过
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        for (String menuRole : menus) {
+            if(authentication.getAuthorities().contains(menuRole)){
+                return true;
+            }
 
-
-        return null;
+        }
+        return false;
     }
 }

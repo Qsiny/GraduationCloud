@@ -33,7 +33,6 @@ public class JwtUtil {
     /**
      * 生成jtw
      * @param subject token中要存放的数据（json格式）
-     * @return
      */
     public static String createJWT(String subject) {
         JwtBuilder builder = getJwtBuilder(subject, null, getUUID());// 设置过期时间
@@ -44,7 +43,6 @@ public class JwtUtil {
      * 生成jtw
      * @param subject token中要存放的数据（json格式）
      * @param ttlMillis token超时时间
-     * @return
      */
     public static String createJWT(String subject, Long ttlMillis) {
         JwtBuilder builder = getJwtBuilder(subject, ttlMillis, getUUID());// 设置过期时间
@@ -75,12 +73,10 @@ public class JwtUtil {
     }
 
     public static void main(String[] args) throws Exception {
-        String aaa = createJWT("aaa", 200L);
+//        Claims claims = parseJWT("eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI4MjlhZjRmMmI0M2I0ODEwOGE0YTdjMzM1ODFkNjkzZSIsInN1YiI6ImFkIiwiaXNzIjoicXNpbnkiLCJpYXQiOjE2NzY3MDE2NzIsImV4cCI6MTY3NjcwMTY3M30.9wKiuhQiuJgBiJ-p70VxF22lBLY65UHlt2NA-PYZTSM");
+//        System.out.println(claims.getId());
+        System.out.println("1");
 
-        Thread.sleep(500L);
-        String id1 = parseJWT(aaa).getId();
-
-        System.out.println(id1);
     }
 
     /**
@@ -96,9 +92,6 @@ public class JwtUtil {
     /**
      * 解析
      *
-     * @param jwt
-     * @return
-     * @throws Exception
      */
     public static Claims parseJWT(String jwt) throws Exception {
         SecretKey secretKey = generalKey();
