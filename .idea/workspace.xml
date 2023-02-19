@@ -4,18 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03ab10e0-683d-42d9-ab9a-76131297c7f1" name="变更" comment="feat: 登陆注册时密码手机号加密（非对称加密）">
-      <change afterPath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/constant/StatusEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/TokenService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/impl/TokenServiceImpl.java" afterDir="false" />
+    <list default="true" id="03ab10e0-683d-42d9-ab9a-76131297c7f1" name="变更" comment="feat: 完善权限校验的规则，添加刷新token的支持">
+      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/controller/CollageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/constant/ResponseStatusCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/constant/ResponseStatusCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/entity/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/entity/Department.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/utils/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/utils/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/feign/SecurityFeign.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/feign/SecurityFeign.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/filter/AllFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-gateway/src/main/java/com/qsiny/filter/AllFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/controller/AuthenticationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/mapper/RoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/mapper/RoleMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/service/DepartmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/service/DepartmentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/service/impl/DepartmentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/service/impl/DepartmentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-portal/src/main/resources/mapper/RoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-portal/src/main/resources/mapper/RoleMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/controller/UserInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/controller/UserInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/filter/UserInfoFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/filter/UserInfoFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/UserInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/UserInfoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/impl/AuthenticationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/impl/AuthenticationServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/impl/UserInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/impl/UserInfoServiceImpl.java" afterDir="false" />
@@ -208,8 +206,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.JwtUtil" />
         <item itemvalue="Spring Boot.security" />
+        <item itemvalue="应用程序.JwtUtil" />
         <item itemvalue="应用程序.KeyToolsUtil" />
         <item itemvalue="Spring Boot.security" />
       </list>
@@ -244,7 +242,9 @@
       <workItem from="1676374408938" duration="10080000" />
       <workItem from="1676460673611" duration="8418000" />
       <workItem from="1676549548428" duration="6283000" />
-      <workItem from="1676638102051" duration="12632000" />
+      <workItem from="1676638102051" duration="13402000" />
+      <workItem from="1676786569270" duration="7404000" />
+      <workItem from="1676801240409" duration="8795000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 提交security模块和gateway模块">
       <created>1676210726409</created>
@@ -274,7 +274,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676554731698</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feat: 完善权限校验的规则，添加刷新token的支持">
+      <created>1676732219097</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1676732219097</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,7 +315,8 @@
     <MESSAGE value="feat: 后端处理请求拦截，维护登陆注册的返回，学院信息的新加" />
     <MESSAGE value="fix: 修复fastjson版本回退" />
     <MESSAGE value="feat: 登陆注册时密码手机号加密（非对称加密）" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 登陆注册时密码手机号加密（非对称加密）" />
+    <MESSAGE value="feat: 完善权限校验的规则，添加刷新token的支持" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 完善权限校验的规则，添加刷新token的支持" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -410,8 +418,33 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/impl/AuthenticationServiceImpl.java</url>
-          <line>30</line>
+          <line>25</line>
           <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/controller/CollageController.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/controller/CollageController.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/impl/AuthenticationServiceImpl.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/controller/UserInfoController.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/impl/UserInfoServiceImpl.java</url>
+          <line>126</line>
+          <option name="timeStamp" value="80" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

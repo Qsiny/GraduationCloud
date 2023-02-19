@@ -5,8 +5,8 @@ import com.qsiny.entity.Menu;
 import com.qsiny.mapper.MenuMapper;
 import com.qsiny.service.AuthenticationService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -19,9 +19,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Resource
     private MenuMapper menuMapper;
-
-    @Resource
-    private AuthenticationManager authenticationManager;
     @Override
     public Boolean hasAuthentication(String url) {
 
@@ -32,15 +29,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             log.info("当前url暂未配置");
             return false;
         }
-        String[] menus = menu.getPerms().split(",");
+        String perms = menu.getPerms();
+        SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(perms);
         //跟现在所拥有的权限做对比，查看是否有交集，如果有，则通过
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        for (String menuRole : menus) {
-            if(authentication.getAuthorities().contains(menuRole)){
-                return true;
-            }
-
-        }
-        return false;
+        return authentication.getAuthorities().contains(simpleGrantedAuthority);
     }
 }

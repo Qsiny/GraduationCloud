@@ -3,6 +3,9 @@ package com.qsiny.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.qsiny.entity.Role;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
 * @author Qin
@@ -13,7 +16,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface RoleMapper extends BaseMapper<Role> {
 
-
+    List<Long> searchUserIdByRole(@Param("roleName") String roleName);
 
 }
 

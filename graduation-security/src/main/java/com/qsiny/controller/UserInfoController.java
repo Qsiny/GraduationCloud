@@ -63,6 +63,15 @@ public class UserInfoController {
         return ResponseResult.build(ResponseStatusCode.SUCCESS_CODE,"发送成功，验证码有效期三分钟",token);
     }
 
+    @PostMapping("/logout")
+    public ResponseResult<Void> logout( String token){
+        if(!StringUtils.hasText(token)){
+            return ResponseResult.build(ResponseStatusCode.SERVER_ERROR,"token为空，登出失败");
+        }
+        log.info("用户登出：{}",token);
+        return userInfoService.userLogout(token);
+    }
+
 
 
 }

@@ -122,4 +122,16 @@ public class UserInfoServiceImpl implements UserInfoService {
         return  JwtUtil.createJWT(loginUser.getUsername(), JwtUtil.ONE_DAY, uuid);
     }
 
+    @Override
+    public ResponseResult<Void> userLogout(String token) {
+        String uuid= null;
+        try {
+            uuid = JwtUtil.parseJWT(token).getId();
+        } catch (Exception e) {
+            return ResponseResult.build(ResponseStatusCode.SERVER_ERROR,"伪造token，不予退出");
+        }
+        redisCache.deleteObject(RedisConstant.TOKEN_PRE+uuid);
+        return ResponseResult.build(ResponseStatusCode.SUCCESS_CODE,"成功");
+    }
+
 }

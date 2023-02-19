@@ -3,7 +3,9 @@ package com.qsiny.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,6 +16,8 @@ import java.util.Date;
  */
 @TableName(value ="sys_department")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Department implements Serializable {
     /**
      * id

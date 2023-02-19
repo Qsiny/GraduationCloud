@@ -28,4 +28,8 @@
         create_id,create_time,update_id,
         update_time,remark
     </sql>
+    <select id="searchUserIdByRole" resultType="java.lang.Long">
+        select sur.user_id from sys_role sr left join sys_user_role sur on sr.role_id = sur.role_id
+        where sr.role_name LIKE CONCAT('%','dean','%');
+    </select>
 </mapper>
