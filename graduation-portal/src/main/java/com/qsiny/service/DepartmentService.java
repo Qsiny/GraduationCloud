@@ -9,4 +9,9 @@ public interface DepartmentService {
     Integer addDepartment(Department department);
 
     List<String> searchDeanByDeanName(String deanName);
+
+    List<String> searchCounselors(String counselorName);
+
+    List<Department> searchDepartmentList();
+
 }

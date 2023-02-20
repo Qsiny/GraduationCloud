@@ -44,4 +44,26 @@ public class DepartmentServiceImpl implements DepartmentService {
         }
         return result;
     }
+
+    @Override
+    public List<String> searchCounselors(String counselorName) {
+        List<String> result = new ArrayList<>();
+        List<Long> counselorIds = roleMapper.searchUserIdByRole("counselor");
+        List<User> users = userMapper.selectList(new QueryWrapper<User>()
+                .lambda()
+                .like(User::getUserName, counselorName)
+                .in(User::getUserId,counselorIds)
+        );
+        for (User user : users) {
+            result.add(user.getUserName()+"-"+user.getUserId());
+        }
+        return result;
+    }
+
+    @Override
+    public List<Department> searchDepartmentList() {
+
+        List<Department> departments = departmentMapper.selectList(null);
+        return departments;
+    }
 }

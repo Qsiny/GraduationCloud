@@ -101,7 +101,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         //生成一个token返回给前端
         String token = JwtUtil.createJWT( username, JwtUtil.ONE_DAY,uuid);
         String reFlushToken = JwtUtil.createJWT( username, JwtUtil.SEVEN_DAYS,uuid);
-
+        log.info("用户注册成功:{}",username);
         return ResponseResult.build(200,"成功",new UserInfoResponse(user.getUserId(),username,token,reFlushToken));
 
     }

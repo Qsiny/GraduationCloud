@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qsiny.mapper.MajorMapper">
+
+    <resultMap id="BaseResultMap" type="com.qsiny.entity.Major">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="majorName" column="major_name" jdbcType="VARCHAR"/>
+        <result property="majorEnglishName" column="major_english_name" jdbcType="VARCHAR"/>
+        <result property="code" column="code" jdbcType="VARCHAR"/>
+        <result property="departmentCode" column="department_code" jdbcType="VARCHAR"/>
+        <result property="createId" column="create_id" jdbcType="VARCHAR"/>
+        <result property="createData" column="create_data" jdbcType="TIMESTAMP"/>
+        <result property="updateId" column="update_id" jdbcType="VARCHAR"/>
+        <result property="updateData" column="update_data" jdbcType="TIMESTAMP"/>
+        <result property="gradeName" column="grade_name" jdbcType="VARCHAR"/>
+        <result property="counselorName" column="counselor_name" jdbcType="VARCHAR"/>
+        <result property="gradeCode" column="grade_code" jdbcType="VARCHAR"/>
+        <result property="counselorId" column="counselor_id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,major_name,major_english_name,
+        code,department_code,create_id,
+        create_data,update_id,update_data,
+        gradeName,counselor_name,grade_code,
+        counselor_id
+    </sql>
+</mapper>

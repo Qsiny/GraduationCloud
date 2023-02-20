@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -37,11 +38,12 @@ public class VerifyServiceImpl implements VerifyService {
 
         String phonenumber = this.decode(encodePhonenumber);
         //之后新增次数的限制
-        String createChecksum = String.valueOf(System.currentTimeMillis()).substring(5);
+        String createChecksum = randomNum();
         redisCache.setCacheObject(RedisConstant.PHONE_CODE_PRE+phonenumber,createChecksum,3, TimeUnit.MINUTES);
         log.info("验证码是：{}",createChecksum);
         return true;
     }
+
 
     @Override
     public String decode(String param){
@@ -52,5 +54,15 @@ public class VerifyServiceImpl implements VerifyService {
             throw new CustomizeException("信息解密错误");
         }
         return message;
+    }
+
+    private String randomNum(){
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 6; i++) {
+            Random random = new Random();
+            int num = random.nextInt(10);
+            sb.append(num);
+        }
+        return sb.toString();
     }
 }
