@@ -3,7 +3,7 @@ package com.qsiny.service.impl;
 import com.qsiny.config.RedisCache;
 import com.qsiny.constant.RedisConstant;
 import com.qsiny.entity.CustomizeException;
-import com.qsiny.entity.LoginUser;
+import com.qsiny.entity.PasswordLoginUser;
 import com.qsiny.service.TokenService;
 import com.qsiny.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
@@ -17,7 +17,7 @@ public class TokenServiceImpl implements TokenService {
     @Resource
     private RedisCache redisCache;
     @Override
-    public LoginUser encodeToken(String token) {
+    public PasswordLoginUser encodeToken(String token) {
         //解析token
         Claims claims;
         try {

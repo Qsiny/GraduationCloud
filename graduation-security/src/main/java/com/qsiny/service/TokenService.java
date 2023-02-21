@@ -1,9 +1,9 @@
 package com.qsiny.service;
 
-import com.qsiny.entity.LoginUser;
+import com.qsiny.entity.PasswordLoginUser;
 
 public interface TokenService {
 
-    LoginUser encodeToken(String token);
+    PasswordLoginUser encodeToken(String token);
 
 }

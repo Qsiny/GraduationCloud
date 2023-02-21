@@ -3,10 +3,7 @@ package com.qsiny.service.impl;
 import com.qsiny.config.RedisCache;
 import com.qsiny.constant.RedisConstant;
 import com.qsiny.constant.ResponseStatusCode;
-import com.qsiny.entity.CustomizeException;
-import com.qsiny.entity.LoginUser;
-import com.qsiny.entity.ResponseResult;
-import com.qsiny.entity.User;
+import com.qsiny.entity.*;
 import com.qsiny.mapper.UserMapper;
 import com.qsiny.po.UserInfoResponse;
 import com.qsiny.service.TokenService;
@@ -17,8 +14,7 @@ import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -50,32 +46,43 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Resource
     private TokenService tokenService;
 
-    @Override
-    public ResponseResult<UserInfoResponse> userLogin(String userMessage,String encodePassword,Boolean rememberMe,Integer loginWay) {
-
-        String password = verifyService.decode(encodePassword);
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userMessage, password);
-        Authentication authenticate = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-        LoginUser loginUser = (LoginUser) authenticate.getPrincipal();
-        if(loginUser == null){
-            log.info("验证失败！{}",userMessage);
-            return ResponseResult.build(404,"用户名或密码错误！");
-        }
-
-
-        Long userId = loginUser.getUser().getUserId();
-        String userName = loginUser.getUser().getUserName();
-        //这里用uuid来代替id
-        String uuid = JwtUtil.getUUID();
-        //通过userId: 加id 放入redis中，loginUser
-        redisCache.setCacheObject( RedisConstant.TOKEN_PRE+uuid,loginUser,7, TimeUnit.DAYS);
-        //生成一个token返回给前端
-
-        String token = JwtUtil.createJWT(userName, JwtUtil.ONE_DAY,uuid);
-        String reFlushToken = JwtUtil.createJWT(userName,JwtUtil.SEVEN_DAYS,uuid);
-        log.info("用户登陆成功:{}",userId);
-        return ResponseResult.build(200,"成功",new UserInfoResponse(userId,userName,token,reFlushToken));
-    }
+//    public ResponseResult<UserInfoResponse> userLogin(String userMessage,String encodePassword,Boolean rememberMe,Integer loginWay) {
+//        //注明：如果是验证码登录方式 则加密的是 电话号，code不会被加密
+//        //      如果是用户名密码登录，则密码加密 两者相反
+//
+//        //这里采用适配器 装饰模式：
+//            //
+//        String password = verifyService.decode(encodePassword);
+//        PasswordLoginUser passwordLoginUser = null;
+//        if(loginWay == 0){
+//            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userMessage, password);
+//            Authentication authenticate = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+//            passwordLoginUser = (PasswordLoginUser) authenticate.getPrincipal();
+//        }else if(loginWay == 1){
+//            CustomAuthenticationToken customAuthenticationToken = new CustomAuthenticationToken(userMessage,encodePassword);
+//            Authentication authenticate = authenticationManager.authenticate(customAuthenticationToken);
+//            passwordLoginUser = (PasswordLoginUser) authenticate.getPrincipal();
+//        }
+//
+//        if(passwordLoginUser == null){
+//            log.info("验证失败！{}",userMessage);
+//            return ResponseResult.build(404,"用户名或密码错误！");
+//        }
+//
+//
+//        Long userId = passwordLoginUser.getUser().getUserId();
+//        String userName = passwordLoginUser.getUser().getUserName();
+//        //这里用uuid来代替id
+//        String uuid = JwtUtil.getUUID();
+//        //通过userId: 加id 放入redis中，loginUser
+//        redisCache.setCacheObject( RedisConstant.TOKEN_PRE+uuid, passwordLoginUser,7, TimeUnit.DAYS);
+//        //生成一个token返回给前端
+//
+//        String token = JwtUtil.createJWT(userName, JwtUtil.ONE_DAY,uuid);
+//        String reFlushToken = JwtUtil.createJWT(userName,JwtUtil.SEVEN_DAYS,uuid);
+//        log.info("用户登陆成功:{}",userId);
+//        return ResponseResult.build(200,"成功",new UserInfoResponse(userId,userName,token,reFlushToken));
+//    }
 
     @Override
     public ResponseResult<UserInfoResponse> register(String username, String encodePassword, String encodePhonenumber, String code) {
@@ -93,11 +100,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 
         userMapper.insert(user);
 
-        LoginUser loginUser = new LoginUser(user,null);
+        PasswordLoginUser passwordLoginUser = new PasswordLoginUser(user,null);
 
         //通过userId: 加id 放入redis中，loginUser
         String uuid = JwtUtil.getUUID();
-        redisCache.setCacheObject( RedisConstant.TOKEN_PRE+uuid,loginUser,7, TimeUnit.DAYS);
+        redisCache.setCacheObject( RedisConstant.TOKEN_PRE+uuid, passwordLoginUser,7, TimeUnit.DAYS);
         //生成一个token返回给前端
         String token = JwtUtil.createJWT( username, JwtUtil.ONE_DAY,uuid);
         String reFlushToken = JwtUtil.createJWT( username, JwtUtil.SEVEN_DAYS,uuid);
@@ -108,8 +115,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public String reFlushToken(String reFlushToken) {
-        LoginUser loginUser = tokenService.encodeToken(reFlushToken);
-        if(loginUser == null){
+        PasswordLoginUser passwordLoginUser = tokenService.encodeToken(reFlushToken);
+        if(passwordLoginUser == null){
             throw new CustomizeException("redis用户信息丢失，请重新登陆");
         }
         String uuid;
@@ -119,7 +126,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return  JwtUtil.createJWT(loginUser.getUsername(), JwtUtil.ONE_DAY, uuid);
+        return  JwtUtil.createJWT(passwordLoginUser.getUsername(), JwtUtil.ONE_DAY, uuid);
     }
 
     @Override
@@ -132,6 +139,36 @@ public class UserInfoServiceImpl implements UserInfoService {
         }
         redisCache.deleteObject(RedisConstant.TOKEN_PRE+uuid);
         return ResponseResult.build(ResponseStatusCode.SUCCESS_CODE,"成功");
+    }
+
+    @Override
+    public ResponseResult<UserInfoResponse> userLogin(UserDetails loginUser, Boolean rememberMe) {
+        if(loginUser == null){
+            log.info("验证失败！{}",loginUser.getUsername());
+            return ResponseResult.build(404,"用户名或密码错误！");
+        }
+        Long userId = null;
+        String userName = null;
+
+        if(loginUser instanceof PasswordLoginUser){
+            PasswordLoginUser passwordLoginUser = (PasswordLoginUser) loginUser;
+            userId = passwordLoginUser.getUser().getUserId();
+            userName = passwordLoginUser.getUser().getUserName();
+        }else{
+            CodeLoginUser codeLoginUser = (CodeLoginUser) loginUser;
+            userId = codeLoginUser.getUser().getUserId();
+            userName = codeLoginUser.getUser().getUserName();
+        }
+
+        //这里用uuid来代替id
+        String uuid = JwtUtil.getUUID();
+        //通过userId: 加id 放入redis中，loginUser
+        redisCache.setCacheObject( RedisConstant.TOKEN_PRE+uuid,loginUser,7, TimeUnit.DAYS);
+        //生成一个token返回给前端
+        String token = JwtUtil.createJWT(userName, JwtUtil.ONE_DAY,uuid);
+        String reFlushToken = JwtUtil.createJWT(userName,JwtUtil.SEVEN_DAYS,uuid);
+        log.info("用户登陆成功:{}",userId);
+        return ResponseResult.build(200,"成功",new UserInfoResponse(userId,userName,token,reFlushToken));
     }
 
 }

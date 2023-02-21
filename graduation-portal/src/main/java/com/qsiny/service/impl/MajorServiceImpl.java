@@ -1,5 +1,6 @@
 package com.qsiny.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.qsiny.entity.Major;
 import com.qsiny.mapper.MajorMapper;
 import com.qsiny.service.MajorService;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class MajorServiceImpl implements MajorService {
@@ -23,5 +25,13 @@ public class MajorServiceImpl implements MajorService {
 
 
 
+    }
+
+    @Override
+    public List<Major> searchMajor(String majorName) {
+        List<Major> majors = majorMapper.selectList(new QueryWrapper<Major>().lambda()
+                .like(Major::getMajorName, majorName));
+
+        return majors;
     }
 }

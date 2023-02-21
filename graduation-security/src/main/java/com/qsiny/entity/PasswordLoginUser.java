@@ -19,16 +19,18 @@ import java.util.stream.Collectors;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginUser  implements UserDetails {
+public class PasswordLoginUser implements UserDetails {
     private User user;
 
     private List<String> permissions;
+
+    private Integer type = 0;
 
     @JSONField(serialize = false)
     private List<GrantedAuthority> authorities;
 
 
-    public LoginUser(User user, List<String> permissions) {
+    public PasswordLoginUser(User user, List<String> permissions) {
         this.user = user;
         this.permissions = permissions;
     }

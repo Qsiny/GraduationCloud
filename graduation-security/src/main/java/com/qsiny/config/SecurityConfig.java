@@ -2,6 +2,9 @@ package com.qsiny.config;
 
 
 import com.qsiny.filter.UserInfoFilter;
+import com.qsiny.provider.CustomerProvider;
+import com.qsiny.service.VerifyService;
+import com.qsiny.service.impl.CodeUserDetailsServiceImpl;
 import com.qsiny.service.impl.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,6 +38,12 @@ public class SecurityConfig{
 
     @Resource
     private AuthenticationEntryPoint authenticationEntryPoint;
+
+    @Resource
+    private CodeUserDetailsServiceImpl codeUserDetailsService;
+
+    @Resource
+    private VerifyService verifyService;
 
     @Bean
     PasswordEncoder passwordEncoder(){
@@ -75,10 +84,14 @@ public class SecurityConfig{
 
     @Bean
     public AuthenticationManager authenticationManager(){
+
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         daoAuthenticationProvider.setUserDetailsService(userDetailsServiceImpl);
-        return new ProviderManager(daoAuthenticationProvider);
+
+        //自定义的provider
+        CustomerProvider customerProvider = new CustomerProvider(codeUserDetailsService,verifyService);
+        return new ProviderManager(daoAuthenticationProvider,customerProvider);
     }
 
 }

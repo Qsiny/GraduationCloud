@@ -1,13 +1,18 @@
 package com.qsiny.controller;
 
 import com.qsiny.constant.ResponseStatusCode;
+import com.qsiny.dto.LoginUserDto;
 import com.qsiny.entity.ResponseResult;
 import com.qsiny.po.UserInfoResponse;
 import com.qsiny.service.UserInfoService;
 import com.qsiny.service.VerifyService;
+import com.qsiny.service.impl.CodeLoginServiceImpl;
+import com.qsiny.service.impl.PasswordLoginServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,12 +29,24 @@ public class UserInfoController {
     @Resource
     private VerifyService verifyService;
 
+    @Resource
+    private CodeLoginServiceImpl codeLoginService;
+
+    @Resource
+    private PasswordLoginServiceImpl passwordLoginService;
     @PostMapping("/userLogin")
-    public ResponseResult<UserInfoResponse> userLogin(String userNameOrTel, String password,Boolean rememberMe,Integer loginWay){
-        if(!StringUtils.hasText(userNameOrTel)||!StringUtils.hasText(password)){
+    public ResponseResult<UserInfoResponse> userLogin(@RequestBody LoginUserDto loginUserDto){
+        if(!StringUtils.hasText(loginUserDto.getAccount())||!StringUtils.hasText(loginUserDto.getVoucher())){
             return ResponseResult.build(ResponseStatusCode.SERVER_ERROR,"用户名或密码为空");
         }
-        return userInfoService.userLogin(userNameOrTel,password,rememberMe,loginWay);
+        UserDetails userDetails;
+        if(loginUserDto.getLoginWay() == 0){
+            userDetails = passwordLoginService.getLoginUser(loginUserDto.getAccount(),loginUserDto.getVoucher());
+        }else{
+            userDetails = codeLoginService.getLoginUser(loginUserDto.getAccount(), loginUserDto.getVoucher());
+        }
+
+        return userInfoService.userLogin(userDetails,loginUserDto.getRememberMe());
     }
 
     @PostMapping("/userRegister")

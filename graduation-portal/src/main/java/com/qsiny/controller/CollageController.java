@@ -1,9 +1,11 @@
 package com.qsiny.controller;
 
 import com.qsiny.constant.ResponseStatusCode;
+import com.qsiny.entity.Class;
 import com.qsiny.entity.Department;
 import com.qsiny.entity.Major;
 import com.qsiny.entity.ResponseResult;
+import com.qsiny.service.ClassService;
 import com.qsiny.service.DepartmentService;
 import com.qsiny.service.MajorService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +28,9 @@ public class CollageController {
 
     @Resource
     private MajorService majorService;
+
+    @Resource
+    private ClassService classService;
 
     @PostMapping("/searchDean")
     public ResponseResult<List<String>> searchDean(String deanName){
@@ -68,4 +73,29 @@ public class CollageController {
         List<Department> departments = departmentService.searchDepartmentList();
         return ResponseResult.build(ResponseStatusCode.SUCCESS_CODE,"成功",departments);
     }
+
+    @PostMapping("/searchMajor")
+    public ResponseResult<List<Major>> searchMajor(String majorName){
+        log.info("搜索专业：参数：{}",majorName);
+        if(!StringUtils.hasText(majorName)){
+            return ResponseResult.build(ResponseStatusCode.SERVER_ERROR,"辅导员名称为空");
+        }
+        List<Major> majors = majorService.searchMajor(majorName);
+        log.info("搜索辅导员，结果:{}",majors);
+        return ResponseResult.build(ResponseStatusCode.SUCCESS_CODE,"成功",majors);
+    }
+
+    @PostMapping("/addClass")
+    public ResponseResult<Void> addClass(@RequestBody Class classInfo){
+        if(!StringUtils.hasText(classInfo.getClassName())){
+            return ResponseResult.build(ResponseStatusCode.SERVER_ERROR,"班级名称为空");
+        }
+
+        classService.addClass(classInfo);
+        return ResponseResult.build(ResponseStatusCode.SUCCESS_CODE,"成功");
+    }
+
+
+
+
 }

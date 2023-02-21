@@ -34,6 +34,6 @@
         update_id,update_time,remark
     </sql>
     <select id="findUserByUsernameOrTel" resultType="com.qsiny.entity.User">
-        select * from graduation.sys_user where sys_user.user_name = #{usernameOrTel} or sys_user.phonenumber = #{usernameOrTel}
+        select * from graduation.sys_user where sys_user.user_name = #{usernameOrTel};
     </select>
 </mapper>

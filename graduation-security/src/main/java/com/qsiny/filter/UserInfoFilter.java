@@ -1,10 +1,13 @@
 package com.qsiny.filter;
 
+import com.alibaba.fastjson.JSONObject;
 import com.qsiny.config.RedisCache;
 import com.qsiny.constant.RedisConstant;
 import com.qsiny.constant.ResponseStatusCode;
+import com.qsiny.entity.CodeLoginUser;
 import com.qsiny.entity.CustomizeException;
-import com.qsiny.entity.LoginUser;
+import com.qsiny.entity.PasswordLoginUser;
+import com.qsiny.provider.CustomAuthenticationToken;
 import com.qsiny.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -52,11 +55,25 @@ public class UserInfoFilter extends OncePerRequestFilter {
             throw new CustomizeException("从token中无法解析ID");
         }
         //从redis拿到userInfo
-        LoginUser loginUser = redisCache.getCacheObject(RedisConstant.TOKEN_PRE+uuid);
-        Collection<? extends GrantedAuthority> authorities = loginUser.getAuthorities();
+        //这里通过type来转化为不同的类吧
+        JSONObject loginUser = redisCache.getCacheObject(RedisConstant.TOKEN_PRE + uuid);
+        String className = (String) loginUser.get("@type");
+        if (PasswordLoginUser.class.getName().equals(className)) {
+            PasswordLoginUser passwordLoginUser = JSONObject.parseObject(loginUser.toJSONString(), PasswordLoginUser.class);
+            //这里能否根据某个特定的字段来判断应该使用自己定义的token还是 用户名密码的token
+            Collection<? extends GrantedAuthority> authorities = passwordLoginUser.getAuthorities();
 
-        //存入context方便后面来进行权限的校验
-        SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(loginUser,null,authorities));
+            //存入context方便后面来进行权限的校验
+            SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(passwordLoginUser, null, authorities));
+        }else{
+            CodeLoginUser codeLoginUser = JSONObject.parseObject(loginUser.toJSONString(), CodeLoginUser.class);
+            //这里能否根据某个特定的字段来判断应该使用自己定义的token还是 用户名密码的token
+            Collection<? extends GrantedAuthority> authorities = codeLoginUser.getAuthorities();
+
+            //存入context方便后面来进行权限的校验
+            SecurityContextHolder.getContext().setAuthentication(new CustomAuthenticationToken(codeLoginUser, null, authorities));
+        }
+
         filterChain.doFilter(request,response);
     }
 }
