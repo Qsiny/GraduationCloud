@@ -20,8 +20,6 @@ public class CodeLoginUser implements UserDetails {
 
     private List<String> permissions;
 
-    private Integer type = 1;
-
     @JSONField(serialize = false)
     private List<GrantedAuthority> authorities;
 
@@ -42,7 +40,7 @@ public class CodeLoginUser implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPhonenumber();
+        return user.getPassword();
     }
 
     @Override

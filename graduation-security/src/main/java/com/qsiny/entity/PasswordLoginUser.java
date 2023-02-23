@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,12 +20,10 @@ import java.util.stream.Collectors;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PasswordLoginUser implements UserDetails {
+public class PasswordLoginUser implements UserDetails , Serializable {
     private User user;
 
     private List<String> permissions;
-
-    private Integer type = 0;
 
     @JSONField(serialize = false)
     private List<GrantedAuthority> authorities;

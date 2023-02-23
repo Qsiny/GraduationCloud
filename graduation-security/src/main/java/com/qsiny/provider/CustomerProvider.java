@@ -44,13 +44,13 @@ public class CustomerProvider implements AuthenticationProvider {
         CustomAuthenticationToken principal = (CustomAuthenticationToken) authentication;
         UserDetails userDetails = retrieveUser(phonenumber, principal);
         //进行真正的比较操作
-        additionalAuthenticationChecks(phonenumber,principal);
+        additionalAuthenticationChecks(encodePhonenumber,principal);
 
         //这里是对用户的5个配置进行检查
         this.accountStatusUserDetailsChecker.check(userDetails);
 
         //生成authentication
-        return createSuccessAuthentication(principal,authentication,userDetails);
+        return createSuccessAuthentication(userDetails,authentication,userDetails);
     }
 
     UserDetails retrieveUser(String phonenumber,CustomAuthenticationToken customAuthenticationToken){
@@ -62,6 +62,7 @@ public class CustomerProvider implements AuthenticationProvider {
         }catch (Exception e){
             //防止时间攻击
             mitigateAgainstTimingAttack(customAuthenticationToken);
+            System.out.println("未查询到用户信息");
             throw e;
         }
         return userDetails;

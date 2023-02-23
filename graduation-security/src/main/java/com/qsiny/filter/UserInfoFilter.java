@@ -1,6 +1,5 @@
 package com.qsiny.filter;
 
-import com.alibaba.fastjson.JSONObject;
 import com.qsiny.config.RedisCache;
 import com.qsiny.constant.RedisConstant;
 import com.qsiny.constant.ResponseStatusCode;
@@ -56,23 +55,35 @@ public class UserInfoFilter extends OncePerRequestFilter {
         }
         //从redis拿到userInfo
         //这里通过type来转化为不同的类吧
-        JSONObject loginUser = redisCache.getCacheObject(RedisConstant.TOKEN_PRE + uuid);
-        String className = (String) loginUser.get("@type");
-        if (PasswordLoginUser.class.getName().equals(className)) {
-            PasswordLoginUser passwordLoginUser = JSONObject.parseObject(loginUser.toJSONString(), PasswordLoginUser.class);
-            //这里能否根据某个特定的字段来判断应该使用自己定义的token还是 用户名密码的token
+        Object o = redisCache.getCacheObject(RedisConstant.TOKEN_PRE + uuid);
+        if(o instanceof CodeLoginUser){
+            CodeLoginUser codeLoginUser = (CodeLoginUser) o;
+            Collection<? extends GrantedAuthority> authorities = codeLoginUser.getAuthorities();
+            //存入context方便后面来进行权限的校验
+            SecurityContextHolder.getContext().setAuthentication(new CustomAuthenticationToken(codeLoginUser, null, authorities));
+        }else{
+            PasswordLoginUser passwordLoginUser = (PasswordLoginUser) o;
             Collection<? extends GrantedAuthority> authorities = passwordLoginUser.getAuthorities();
 
             //存入context方便后面来进行权限的校验
             SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(passwordLoginUser, null, authorities));
-        }else{
-            CodeLoginUser codeLoginUser = JSONObject.parseObject(loginUser.toJSONString(), CodeLoginUser.class);
-            //这里能否根据某个特定的字段来判断应该使用自己定义的token还是 用户名密码的token
-            Collection<? extends GrantedAuthority> authorities = codeLoginUser.getAuthorities();
-
-            //存入context方便后面来进行权限的校验
-            SecurityContextHolder.getContext().setAuthentication(new CustomAuthenticationToken(codeLoginUser, null, authorities));
         }
+//        String className = (String) loginUser.get("@type");
+//        if (PasswordLoginUser.class.getName().equals(className)) {
+//            PasswordLoginUser passwordLoginUser = JSONObject.parseObject(loginUser.toJSONString(), PasswordLoginUser.class);
+//            //这里能否根据某个特定的字段来判断应该使用自己定义的token还是 用户名密码的token
+//            Collection<? extends GrantedAuthority> authorities = passwordLoginUser.getAuthorities();
+//
+//            //存入context方便后面来进行权限的校验
+//            SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(passwordLoginUser, null, authorities));
+//        }else{
+//            CodeLoginUser codeLoginUser = JSONObject.parseObject(loginUser.toJSONString(), CodeLoginUser.class);
+//            //这里能否根据某个特定的字段来判断应该使用自己定义的token还是 用户名密码的token
+//            Collection<? extends GrantedAuthority> authorities = codeLoginUser.getAuthorities();
+//
+//            //存入context方便后面来进行权限的校验
+//            SecurityContextHolder.getContext().setAuthentication(new CustomAuthenticationToken(codeLoginUser, null, authorities));
+//        }
 
         filterChain.doFilter(request,response);
     }
