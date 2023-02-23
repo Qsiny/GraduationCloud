@@ -97,6 +97,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         user.setUserName(username);
         user.setPassword(encode);
         user.setPhonenumber(phonenumber);
+        user.setUserType("00");
 
         userMapper.insert(user);
 
@@ -108,8 +109,8 @@ public class UserInfoServiceImpl implements UserInfoService {
         //生成一个token返回给前端
         String token = JwtUtil.createJWT( username, JwtUtil.ONE_DAY,uuid);
         String reFlushToken = JwtUtil.createJWT( username, JwtUtil.SEVEN_DAYS,uuid);
-        log.info("用户注册成功:{}",username);
-        return ResponseResult.build(200,"成功",new UserInfoResponse(user.getUserId(),username,token,reFlushToken));
+        log.info("用户注册成功:{}",user);
+        return ResponseResult.build(200,"成功",new UserInfoResponse(user.getUserId(),username,token,reFlushToken,user.getUserType()));
 
     }
 
@@ -144,20 +145,21 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public ResponseResult<UserInfoResponse> userLogin(UserDetails loginUser, Boolean rememberMe) {
         if(loginUser == null){
-            log.info("验证失败！{}",loginUser.getUsername());
             return ResponseResult.build(404,"用户名或密码错误！");
         }
         Long userId = null;
         String userName = null;
-
+        String userType = null;
         if(loginUser instanceof PasswordLoginUser){
             PasswordLoginUser passwordLoginUser = (PasswordLoginUser) loginUser;
             userId = passwordLoginUser.getUser().getUserId();
             userName = passwordLoginUser.getUser().getUserName();
+            userType = passwordLoginUser.getUser().getUserType();
         }else{
             CodeLoginUser codeLoginUser = (CodeLoginUser) loginUser;
             userId = codeLoginUser.getUser().getUserId();
             userName = codeLoginUser.getUser().getUserName();
+            userType = codeLoginUser.getUser().getUserType();
         }
 
         //这里用uuid来代替id
@@ -168,7 +170,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         String token = JwtUtil.createJWT(userName, JwtUtil.ONE_DAY,uuid);
         String reFlushToken = JwtUtil.createJWT(userName,JwtUtil.SEVEN_DAYS,uuid);
         log.info("用户登陆成功:{}",userId);
-        return ResponseResult.build(200,"成功",new UserInfoResponse(userId,userName,token,reFlushToken));
+        return ResponseResult.build(200,"成功",new UserInfoResponse(userId,userName,token,reFlushToken,userType));
     }
 
 }
