@@ -1,13 +1,17 @@
 package com.qsiny.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.qsiny.dto.DepartmentRequestDto;
 import com.qsiny.entity.Department;
 import com.qsiny.entity.User;
 import com.qsiny.mapper.DepartmentMapper;
 import com.qsiny.mapper.RoleMapper;
 import com.qsiny.mapper.UserMapper;
+import com.qsiny.po.PageResult;
 import com.qsiny.service.DepartmentService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -65,5 +69,24 @@ public class DepartmentServiceImpl implements DepartmentService {
 
         List<Department> departments = departmentMapper.selectList(null);
         return departments;
+    }
+
+    @Override
+    public PageResult<Department> searchDepartmentList(DepartmentRequestDto departmentRequestDto) {
+
+        PageResult<Department> result = new PageResult<>();
+        Page<Department> departmentPage;
+        Page<Department> page = new Page<>(departmentRequestDto.getPage(), departmentRequestDto.getSize(),true);
+        if(StringUtils.hasText(departmentRequestDto.getDepartmentName())){
+            departmentPage = departmentMapper.selectPage(page, new QueryWrapper<Department>()
+                    .lambda()
+                    .likeRight(Department::getDepartmentName, departmentRequestDto.getDepartmentName()));
+
+        }else{
+            departmentPage = departmentMapper.selectPage(page,null);
+        }
+        result.setTotal(departmentPage.getTotal());
+        result.setResult(departmentPage.getRecords());
+        return result;
     }
 }

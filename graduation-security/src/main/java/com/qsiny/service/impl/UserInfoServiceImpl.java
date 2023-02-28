@@ -11,6 +11,7 @@ import com.qsiny.service.UserInfoService;
 import com.qsiny.service.VerifyService;
 import com.qsiny.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -135,6 +136,8 @@ public class UserInfoServiceImpl implements UserInfoService {
         String uuid= null;
         try {
             uuid = JwtUtil.parseJWT(token).getId();
+        }catch (ExpiredJwtException e) {
+            return ResponseResult.build(ResponseStatusCode.FOUND,"token过期");
         } catch (Exception e) {
             return ResponseResult.build(ResponseStatusCode.SERVER_ERROR,"伪造token，不予退出");
         }

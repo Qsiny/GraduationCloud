@@ -1,10 +1,14 @@
 package com.qsiny.controller;
 
 import com.qsiny.constant.ResponseStatusCode;
+import com.qsiny.dto.ClassRequestDto;
+import com.qsiny.dto.DepartmentRequestDto;
+import com.qsiny.dto.MajorRequestDto;
 import com.qsiny.entity.Class;
 import com.qsiny.entity.Department;
 import com.qsiny.entity.Major;
 import com.qsiny.entity.ResponseResult;
+import com.qsiny.po.PageResult;
 import com.qsiny.service.ClassService;
 import com.qsiny.service.DepartmentService;
 import com.qsiny.service.MajorService;
@@ -95,6 +99,39 @@ public class CollageController {
         return ResponseResult.build(ResponseStatusCode.SUCCESS_CODE,"成功");
     }
 
+
+    @PostMapping(value = "/searchDepartment")
+    public ResponseResult<PageResult<Department>> searchDepartment(DepartmentRequestDto departmentRequestDto){
+
+        if(StringUtils.hasText(departmentRequestDto.getDepartmentName())){
+            log.info("当前查询院校信息需要名称：{}",departmentRequestDto.getDepartmentName());
+        }
+        PageResult<Department> pageResult = departmentService.searchDepartmentList(departmentRequestDto);
+
+        return ResponseResult.build(ResponseStatusCode.SUCCESS_CODE,"成功",pageResult);
+    }
+
+    @PostMapping(value = "/searchMajorList")
+    public ResponseResult<PageResult<Major>> searchMajorList(MajorRequestDto majorRequestDto){
+
+        if(StringUtils.hasText(majorRequestDto.getMajorName())){
+            log.info("当前查询院校信息需要名称：{}",majorRequestDto.getMajorName());
+        }
+        PageResult<Major> pageResult = majorService.searchMajorList(majorRequestDto);
+
+        return ResponseResult.build(ResponseStatusCode.SUCCESS_CODE,"成功",pageResult);
+    }
+
+    @PostMapping(value = "/searchClassList")
+    public ResponseResult<PageResult<Class>> searchClassList(ClassRequestDto classRequestDto){
+
+        if(StringUtils.hasText(classRequestDto.getClassName())){
+            log.info("当前查询院校信息需要名称：{}",classRequestDto.getClassName());
+        }
+        PageResult<Class> pageResult = classService.searchClassList(classRequestDto);
+
+        return ResponseResult.build(ResponseStatusCode.SUCCESS_CODE,"成功",pageResult);
+    }
 
 
 

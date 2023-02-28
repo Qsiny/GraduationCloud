@@ -65,11 +65,19 @@ public class Class implements Serializable {
      * 更新时间
      */
     private Date updateData;
-
     /**
-     * 班级代码
+     * 年级名
      */
-    private String classCode;
+    private String gradeName;
+    /**
+     * 专业代码
+     */
+    private String MajorCode;
+    /**
+     * 专业名称
+     */
+    private String MajorName;
+
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
