@@ -15,6 +15,7 @@
         <module>graduation-task</module>
         <module>graduation-common</module>
         <module>graduation-security</module>
+        <module>graduation-consumer</module>
     </modules>
 
     <properties>

@@ -5,6 +5,8 @@
     <file url="file://$PROJECT_DIR$/graduation-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/graduation-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/graduation-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/graduation-consumer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/graduation-consumer/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/graduation-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/graduation-gateway/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/graduation-portal/src/main/java" charset="UTF-8" />
