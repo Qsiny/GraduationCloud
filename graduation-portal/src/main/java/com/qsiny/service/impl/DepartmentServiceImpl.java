@@ -2,8 +2,10 @@ package com.qsiny.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.qsiny.constant.ResponseStatusCode;
 import com.qsiny.dto.DepartmentRequestDto;
 import com.qsiny.entity.Department;
+import com.qsiny.entity.ResponseResult;
 import com.qsiny.entity.User;
 import com.qsiny.mapper.DepartmentMapper;
 import com.qsiny.mapper.RoleMapper;
@@ -88,5 +90,12 @@ public class DepartmentServiceImpl implements DepartmentService {
         result.setTotal(departmentPage.getTotal());
         result.setResult(departmentPage.getRecords());
         return result;
+    }
+
+    @Override
+    public ResponseResult<List<Department>> searchMajorByDepartmentCode() {
+
+        List<Department> departments = departmentMapper.selectList(null);
+        return ResponseResult.build(ResponseStatusCode.SUCCESS_CODE,"成功",departments);
     }
 }

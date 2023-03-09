@@ -3,6 +3,7 @@ package com.qsiny.controller;
 import com.qsiny.constant.ResponseStatusCode;
 import com.qsiny.dto.ClassRequestDto;
 import com.qsiny.dto.DepartmentRequestDto;
+import com.qsiny.dto.GradeVo;
 import com.qsiny.dto.MajorRequestDto;
 import com.qsiny.entity.Class;
 import com.qsiny.entity.Department;
@@ -111,6 +112,14 @@ public class CollageController {
         return ResponseResult.build(ResponseStatusCode.SUCCESS_CODE,"成功",pageResult);
     }
 
+    @PostMapping("/searchMajorByDepartmentCode")
+    public ResponseResult<List<Major>> searchMajorByDepartmentCode(String departmentCode){
+        if(!StringUtils.hasText(departmentCode)){
+            return ResponseResult.build(ResponseStatusCode.SERVER_ERROR,"参数为空");
+        }
+        return majorService.searchMajorByDepartmentCode(departmentCode);
+    }
+
     @PostMapping(value = "/searchMajorList")
     public ResponseResult<PageResult<Major>> searchMajorList(MajorRequestDto majorRequestDto){
 
@@ -120,6 +129,15 @@ public class CollageController {
         PageResult<Major> pageResult = majorService.searchMajorList(majorRequestDto);
 
         return ResponseResult.build(ResponseStatusCode.SUCCESS_CODE,"成功",pageResult);
+    }
+
+    @PostMapping("/searchGradeByDepartmentAndMajor")
+    public ResponseResult<List<GradeVo>> searchGradeByDepartmentAndMajor(String departmentCode, String majorCode){
+        if(!StringUtils.hasText(departmentCode) || !StringUtils.hasText(majorCode)){
+            return ResponseResult.build(ResponseStatusCode.SERVER_ERROR,"参数为空");
+        }
+        return majorService.searchGradeByDepartmentAndMajor(departmentCode,majorCode);
+
     }
 
     @PostMapping(value = "/searchClassList")
@@ -133,6 +151,13 @@ public class CollageController {
         return ResponseResult.build(ResponseStatusCode.SUCCESS_CODE,"成功",pageResult);
     }
 
+    @PostMapping("searchClassByDepartmentAndMajorAndGrade")
+    public ResponseResult<List<Class>> searchClassByDepartmentAndMajorAndGrade(String departmentCode, String majorCode,String gradeCode ){
+        if(!StringUtils.hasText(departmentCode) || !StringUtils.hasText(majorCode) || !StringUtils.hasText(gradeCode)){
+            return ResponseResult.build(ResponseStatusCode.SERVER_ERROR,"参数为空");
+        }
+        return classService.searchClassByDepartmentAndMajorAndGrade(departmentCode,majorCode,gradeCode);
+    }
 
 
 }

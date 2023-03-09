@@ -44,7 +44,7 @@ public class AllFilter implements GlobalFilter, Ordered {
             try {
                 ResponseResult<Boolean> result = completableFuture.get();
                 if(!result.getData()){
-                    log.info("当前url访问无权限:{}");
+                    log.info("当前url访问无权限:{}",request.getPath());
                     //set response 403
                     exchange.getResponse().setStatusCode(HttpStatus.FORBIDDEN);
                     return exchange.getResponse().setComplete();

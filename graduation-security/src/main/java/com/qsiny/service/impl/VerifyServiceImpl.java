@@ -6,13 +6,12 @@ import com.qsiny.entity.CustomizeException;
 import com.qsiny.service.VerifyService;
 import com.qsiny.utils.KeyToolsUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 @Service
 @Slf4j
@@ -23,6 +22,9 @@ public class VerifyServiceImpl implements VerifyService {
 
     @Value("${privateKey}")
     private String privateKey;
+
+    @Resource
+    private RabbitTemplate rabbitTemplate;
     @Override
     public Boolean verifyPhoneCode(String encodePhonenumber, String code) {
         String phonenumber = this.decode(encodePhonenumber);
@@ -37,10 +39,18 @@ public class VerifyServiceImpl implements VerifyService {
     public Boolean createChecksum(String encodePhonenumber) {
 
         String phonenumber = this.decode(encodePhonenumber);
+        Integer count = redisCache.getCacheObject(RedisConstant.PHONE_COUNT_PRE+phonenumber);
+        if(count == null){
+            redisCache.setCacheObject(RedisConstant.PHONE_COUNT_PRE+phonenumber,1);
+        }else{
+            if(count > 3){
+                return false;
+            }
+            redisCache.setCacheObject(RedisConstant.PHONE_COUNT_PRE+phonenumber,count+1);
+        }
+
         //之后新增次数的限制
-        String createChecksum = randomNum();
-        redisCache.setCacheObject(RedisConstant.PHONE_CODE_PRE+phonenumber,createChecksum,3, TimeUnit.MINUTES);
-        log.info("验证码是：{}",createChecksum);
+        rabbitTemplate.convertAndSend("direct_exchange","sms",phonenumber);
         return true;
     }
 
@@ -56,13 +66,5 @@ public class VerifyServiceImpl implements VerifyService {
         return message;
     }
 
-    private String randomNum(){
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 6; i++) {
-            Random random = new Random();
-            int num = random.nextInt(10);
-            sb.append(num);
-        }
-        return sb.toString();
-    }
+
 }

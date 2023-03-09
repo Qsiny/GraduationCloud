@@ -27,4 +27,14 @@
         gradeName,counselor_name,grade_code,
         counselor_id
     </sql>
+    <select id="searchGradeByDepartmentAndMajor" resultType="com.qsiny.dto.GradeVo">
+        SELECT
+            sm.grade_code as `code`,sm.grade_name as gradeName
+        FROM
+            sys_department sd
+                LEFT JOIN sys_major sm ON sd.`code` = sm.department_code
+        WHERE
+            sd.CODE = #{departmentCode}
+          AND sm.CODE = #{majorCode}
+    </select>
 </mapper>

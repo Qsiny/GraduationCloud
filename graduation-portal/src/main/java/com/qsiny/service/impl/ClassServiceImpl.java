@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qsiny.dto.ClassRequestDto;
 import com.qsiny.entity.Class;
+import com.qsiny.entity.ResponseResult;
 import com.qsiny.mapper.ClassMapper;
 import com.qsiny.po.PageResult;
 import com.qsiny.service.ClassService;
@@ -13,6 +14,7 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -42,5 +44,11 @@ public class ClassServiceImpl implements ClassService {
         result.setResult(selectPage.getRecords());
         result.setTotal(selectPage.getTotal());
         return result;
+    }
+
+    @Override
+    public ResponseResult<List<Class>> searchClassByDepartmentAndMajorAndGrade(String departmentCode, String majorCode, String gradeCode) {
+        List<Class> classList = classMapper.searchClassByDepartmentAndMajorAndGrade(departmentCode,majorCode,gradeCode);
+        return null;
     }
 }

@@ -2,6 +2,7 @@ package com.qsiny.service;
 
 import com.qsiny.dto.DepartmentRequestDto;
 import com.qsiny.entity.Department;
+import com.qsiny.entity.ResponseResult;
 import com.qsiny.po.PageResult;
 
 import java.util.List;
@@ -17,5 +18,7 @@ public interface DepartmentService {
     List<Department> searchDepartmentList();
 
     PageResult<Department> searchDepartmentList(DepartmentRequestDto departmentRequestDto);
+
+    ResponseResult<List<Department>> searchMajorByDepartmentCode();
 
 }

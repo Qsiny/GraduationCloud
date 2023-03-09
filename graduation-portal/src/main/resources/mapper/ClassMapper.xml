@@ -24,4 +24,16 @@
         create_id,create_data,update_id,
         update_data,class_code
     </sql>
+    <select id="searchClassByDepartmentAndMajorAndGrade" resultType="com.qsiny.entity.Class">
+        SELECT
+            sc.class_code as `code`,sc.class_name as `className`
+        FROM
+            sys_department sd
+                LEFT JOIN sys_major sm ON sd.`code` = sm.department_code
+                LEFT JOIN sys_class sc on sm.grade_code = sc.grade_code
+        WHERE
+            sd.CODE = #{departmentCode}
+          AND sm.CODE = #{majorCode}
+          AND sc.grade_code = #{gradeCode}
+    </select>
 </mapper>

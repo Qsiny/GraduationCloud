@@ -1,8 +1,12 @@
 package com.qsiny.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.qsiny.dto.GradeVo;
 import com.qsiny.entity.Major;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
 * @author qinshouyuan
@@ -13,6 +17,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface MajorMapper extends BaseMapper<Major> {
 
+    List<GradeVo> searchGradeByDepartmentAndMajor(@Param("departmentCode") String departmentCode, @Param("majorCode") String majorCode);
 }
 
 

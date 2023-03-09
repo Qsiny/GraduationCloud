@@ -2,8 +2,11 @@ package com.qsiny.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.qsiny.constant.ResponseStatusCode;
+import com.qsiny.dto.GradeVo;
 import com.qsiny.dto.MajorRequestDto;
 import com.qsiny.entity.Major;
+import com.qsiny.entity.ResponseResult;
 import com.qsiny.mapper.MajorMapper;
 import com.qsiny.po.PageResult;
 import com.qsiny.service.MajorService;
@@ -56,5 +59,18 @@ public class MajorServiceImpl implements MajorService {
         result.setResult(selectPage.getRecords());
         result.setTotal(selectPage.getTotal());
         return result;
+    }
+
+    @Override
+    public ResponseResult<List<Major>> searchMajorByDepartmentCode(String departmentCode) {
+        List<Major> majors = majorMapper.selectList(new QueryWrapper<Major>().lambda().eq(Major::getCode, departmentCode));
+        return ResponseResult.build(ResponseStatusCode.SUCCESS_CODE,"成功",majors);
+    }
+
+    @Override
+    public ResponseResult<List<GradeVo>> searchGradeByDepartmentAndMajor(String departmentCode, String majorCode) {
+
+        List<GradeVo> list = majorMapper.searchGradeByDepartmentAndMajor(departmentCode,majorCode);
+        return null;
     }
 }
