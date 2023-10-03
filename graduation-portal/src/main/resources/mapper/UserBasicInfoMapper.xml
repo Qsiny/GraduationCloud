@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qsiny.mapper.UserBasicInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.qsiny.entity.UserBasicInfo">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="majorCode" column="major_code" jdbcType="VARCHAR"/>
+            <result property="majorName" column="major_name" jdbcType="VARCHAR"/>
+            <result property="departmentCode" column="department_code" jdbcType="VARCHAR"/>
+            <result property="departmentName" column="department_name" jdbcType="VARCHAR"/>
+            <result property="gradeCode" column="grade_code" jdbcType="VARCHAR"/>
+            <result property="gradeName" column="grade_name" jdbcType="VARCHAR"/>
+            <result property="classCode" column="class_code" jdbcType="VARCHAR"/>
+            <result property="className" column="class_name" jdbcType="VARCHAR"/>
+            <result property="idNumber" column="id_number" jdbcType="VARCHAR"/>
+            <result property="nativePlace" column="native_place" jdbcType="VARCHAR"/>
+            <result property="homeAddress" column="home_address" jdbcType="VARCHAR"/>
+            <result property="contactName" column="contact_name" jdbcType="VARCHAR"/>
+            <result property="contactPhone" column="contact_phone" jdbcType="VARCHAR"/>
+            <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+            <result property="createId" column="create_id" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateId" column="update_id" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="national" column="national" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,major_code,major_name,
+        department_code,department_name,grade_code,
+        grade_name,class_code,class_name,
+        id_number,native_place,home_address,
+        contact_name,contact_phone,user_id,
+        create_id,create_time,update_id,
+        update_time,national
+    </sql>
+</mapper>

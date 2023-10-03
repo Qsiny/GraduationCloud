@@ -17,6 +17,7 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -32,6 +33,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     private RoleMapper roleMapper;
     @Override
     public Integer addDepartment(Department department) {
+        department.setCreateId("SYSTEM_USER");
+        department.setCreateTime(new Date(System.currentTimeMillis()));
+        department.setUpdateId("SYSTEM_USER");
+        department.setUpdateTime(new Date(System.currentTimeMillis()));
         departmentMapper.insert(department);
         return 1;
     }
@@ -69,14 +74,16 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public List<Department> searchDepartmentList() {
 
-        List<Department> departments = departmentMapper.selectList(null);
-        return departments;
+        return departmentMapper.selectList(null);
     }
 
     @Override
     public PageResult<Department> searchDepartmentList(DepartmentRequestDto departmentRequestDto) {
+        //让我来写一段代码的测试的吧
+
 
         PageResult<Department> result = new PageResult<>();
+
         Page<Department> departmentPage;
         Page<Department> page = new Page<>(departmentRequestDto.getPage(), departmentRequestDto.getSize(),true);
         if(StringUtils.hasText(departmentRequestDto.getDepartmentName())){

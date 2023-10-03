@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qsiny.mapper.UserApplyInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.qsiny.entity.UserApplyInfo">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="applyType" column="apply_type" jdbcType="VARCHAR"/>
+            <result property="applyRole" column="apply_role" jdbcType="VARCHAR"/>
+            <result property="majorCode" column="major_code" jdbcType="VARCHAR"/>
+            <result property="majorName" column="major_name" jdbcType="VARCHAR"/>
+            <result property="departmentCode" column="department_code" jdbcType="VARCHAR"/>
+            <result property="departmentName" column="department_name" jdbcType="VARCHAR"/>
+            <result property="gradeCode" column="grade_code" jdbcType="VARCHAR"/>
+            <result property="gradeName" column="grade_name" jdbcType="VARCHAR"/>
+            <result property="classCode" column="class_code" jdbcType="VARCHAR"/>
+            <result property="className" column="class_name" jdbcType="VARCHAR"/>
+            <result property="idNumber" column="id_number" jdbcType="VARCHAR"/>
+            <result property="nativePlace" column="native_place" jdbcType="VARCHAR"/>
+            <result property="homeAddress" column="home_address" jdbcType="VARCHAR"/>
+            <result property="national" column="national" jdbcType="VARCHAR"/>
+            <result property="decideUserId" column="decide_user_id" jdbcType="BIGINT"/>
+            <result property="decideUserName" column="decide_user_name" jdbcType="VARCHAR"/>
+            <result property="result" column="result" jdbcType="TINYINT"/>
+            <result property="createId" column="create_id" jdbcType="BIGINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateId" column="update_id" jdbcType="BIGINT"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,apply_type,
+        apply_role,major_code,major_name,
+        department_code,department_name,grade_code,
+        grade_name,class_code,class_name,
+        id_number,native_place,home_address,
+        national,decide_user_id,decide_user_name,
+        result,create_id,create_time,
+        update_id,update_time
+    </sql>
+</mapper>
