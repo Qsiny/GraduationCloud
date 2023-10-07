@@ -1,9 +1,13 @@
 package com.qsiny.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
+import com.qsiny.constant.CommonValues;
 import com.qsiny.constant.ResponseStatusCode;
-import com.qsiny.dto.MessageDto;
 import com.qsiny.dto.TeacherMessageDto;
+import com.qsiny.entity.CustomizeException;
+import com.qsiny.entity.DelayedMessage;
 import com.qsiny.entity.ResponseResult;
+import com.qsiny.mapper.DelayedMessageMapper;
 import com.qsiny.service.MessageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -21,36 +25,55 @@ public class MessageServiceImpl implements MessageService {
 
     @Resource
     private RabbitTemplate rabbitTemplate;
+
+    @Resource
+    private DelayedMessageMapper delayedMessageMapper;
     @Override
-    public ResponseResult<Void> sendMessage(MessageDto messageDto) {
+    public <T> ResponseResult<Void> sendMessage(String exchangeName,String routingKey,Integer type,T dto,Long sendTime) {
 
-//        Date submitTIme = messageDto.getSubmitTime();
-        long time = messageDto.getSubmitTime().getTime();
-        long now = System.currentTimeMillis();
-        int diff = (int) ( time - now);
-        if(diff < 0){
 
-            return ResponseResult.build(ResponseStatusCode.SERVER_ERROR,"设定时间早于系统时间");
-        }
-
-        //做操作
-        TeacherMessageDto teacherMessageDto = new TeacherMessageDto();
-        teacherMessageDto.setMessage("chess");
-        if(judgeTimeIsToday(messageDto.getSubmitTime())){
-            log.info("发送消息,时间延迟：{}",diff);
-
-            rabbitTemplate.convertAndSend("delayed_exchange","message_delayed",teacherMessageDto,a -> {
-                a.getMessageProperties().setDelay(diff);
-                return a;
-            });
+//      如果是0则代表是普通消息 直接发送
+        if(CommonValues.ZERO.equals(type)){
+            rabbitTemplate.convertAndSend(exchangeName,routingKey,dto);
         }else{
-            log.info("之后的消息，进入db");
-
+            //延迟发送
+            sendDelayedMessage(exchangeName,routingKey,dto,sendTime);
         }
 
         return ResponseResult.build(ResponseStatusCode.SUCCESS_CODE,"发送成功");
 
+    }
 
+    private <T> void sendDelayedMessage(String exchangeName,String routingKey,T dto,Long sendTime){
+
+        Date submitTIme = new Date(sendTime);
+        long time = submitTIme.getTime();
+        long now = System.currentTimeMillis();
+        int diff = (int) ( time - now);
+        if(diff < 0){
+            throw new CustomizeException("发送延迟消息时间早于系统时间");
+        }
+
+        //这里先判断是否今天 不然定时任务会有冲突
+        //做操作
+        TeacherMessageDto teacherMessageDto = new TeacherMessageDto();
+        teacherMessageDto.setMessage("chess");
+        if(judgeTimeIsToday(submitTIme)){
+            log.info("发送消息,时间延迟：{}",diff);
+            rabbitTemplate.convertAndSend(exchangeName,routingKey,dto,a -> {
+                a.getMessageProperties().setDelay(diff);
+                return a;
+            });
+        }else{
+            log.info("之后的消息，进入db,{}",dto);
+            DelayedMessage delayedMessage = new DelayedMessage();
+            delayedMessage.setMessageValues(JSONObject.toJSONString(dto));
+            delayedMessage.setSendTime(new Date(sendTime));
+            delayedMessage.setExchangeName(exchangeName);
+            delayedMessage.setRoutingKey(routingKey);
+            delayedMessageMapper.insert(delayedMessage);
+
+        }
     }
 
     public boolean judgeTimeIsToday(Date localDateTime) {

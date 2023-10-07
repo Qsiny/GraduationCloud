@@ -68,8 +68,8 @@
             <option name="tableUIInfoList">
               <list>
                 <TableUIInfo>
-                  <option name="className" value="UserBasicInfo" />
-                  <option name="tableName" value="sys_user_basic_info" />
+                  <option name="className" value="DelayedMessage" />
+                  <option name="tableName" value="sys_delayed_message" />
                 </TableUIInfo>
               </list>
             </option>

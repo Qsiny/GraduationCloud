@@ -4,22 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03ab10e0-683d-42d9-ab9a-76131297c7f1" name="变更" comment="feat: 将发送验证码的操作集成到队列当中，新增了级联的搜索">
-      <change afterPath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/constant/CommonValues.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/entity/UserApplyInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/entity/UserBasicInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/controller/ApplyController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/mapper/UserApplyInfoMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/mapper/UserBasicInfoMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/service/ApplyService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/service/impl/ApplyServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/resources/mapper/UserApplyInfoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/resources/mapper/UserBasicInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="03ab10e0-683d-42d9-ab9a-76131297c7f1" name="变更" comment="feat: 添加申请bean以及基本信息bean，添加相应的一点功能">
+      <change afterPath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/entity/DelayedMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/entity/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/mapper/DelayedMessageMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/mapper/MessageMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/utils/UserUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/resources/mapper/DelayedMessageMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-portal/src/main/resources/mapper/MessageMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/entity/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/entity/Department.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/service/impl/DepartmentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/service/impl/DepartmentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/constant/CommonValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/constant/CommonValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/dto/MessageDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-common/src/main/java/com/qsiny/dto/MessageDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/controller/MessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/service/MessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/service/impl/ApplyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/service/impl/ApplyServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/service/impl/MessageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/service/impl/MessageServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +93,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/qinshouyuan/IdeaProjects/GraduationCloud/graduation-consumer/src/main/java/com/qsiny/config&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/qinshouyuan/IdeaProjects/GraduationCloud/graduation-portal/src/main/resources/mapper&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -116,9 +117,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/graduation-portal/src/main/resources/mapper" />
       <recent name="$PROJECT_DIR$/graduation-consumer/src/main/java/com/qsiny/config" />
       <recent name="$PROJECT_DIR$/graduation-consumer/src/main/resources" />
-      <recent name="$PROJECT_DIR$/graduation-portal/src/main/resources/mapper" />
       <recent name="$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/mapper" />
       <recent name="$PROJECT_DIR$/graduation-security/src/main/resources" />
     </key>
@@ -127,11 +128,11 @@
       <recent name="$PROJECT_DIR$/graduation-portal/src/main/resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.qsiny.config" />
       <recent name="com.qsiny.mapper" />
       <recent name="com.qsiny.entity" />
+      <recent name="com.qsiny.service" />
+      <recent name="com.qsiny.config" />
       <recent name="com.qsiny.utils" />
-      <recent name="com.qsiny.feign" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -312,7 +313,9 @@
       <workItem from="1684410968188" duration="5000" />
       <workItem from="1696073393213" duration="1783000" />
       <workItem from="1696146123188" duration="6016000" />
-      <workItem from="1696300410421" duration="1819000" />
+      <workItem from="1696300410421" duration="4375000" />
+      <workItem from="1696342411745" duration="3711000" />
+      <workItem from="1696660445811" duration="3534000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 提交security模块和gateway模块">
       <created>1676210726409</created>
@@ -405,7 +408,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678365612018</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="feat: 添加申请bean以及基本信息bean，添加相应的一点功能">
+      <created>1696302483126</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1696302483126</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -448,7 +458,8 @@
     <MESSAGE value="feat: 新增班级类数据结构，新增分页查询" />
     <MESSAGE value="feat: 新增延迟消息发布功能，以及rabbitmq的配置" />
     <MESSAGE value="feat: 将发送验证码的操作集成到队列当中，新增了级联的搜索" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 将发送验证码的操作集成到队列当中，新增了级联的搜索" />
+    <MESSAGE value="feat: 添加申请bean以及基本信息bean，添加相应的一点功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 添加申请bean以及基本信息bean，添加相应的一点功能" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -572,16 +583,6 @@
           <url>file://$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/impl/UserInfoServiceImpl.java</url>
           <line>108</line>
           <option name="timeStamp" value="98" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/controller/MessageController.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="103" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/graduation-portal/src/main/java/com/qsiny/service/impl/MessageServiceImpl.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="104" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/graduation-security/src/main/java/com/qsiny/service/impl/VerifyServiceImpl.java</url>

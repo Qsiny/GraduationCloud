@@ -5,18 +5,55 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class MessageDto {
+public class MessageDto<T> {
 
-    private String majorCode;
 
-    private String departmentCode;
+    //这里是传入的一个对象
+    private T t;
 
-    private String classCode;
+    /**
+     * type: 0：普通消息 1：定时消息
+     */
+    private Integer type;
 
-    private String gradeCode;
+    private Date sendTime;
+//    private String majorCode;
+//
+//    private String departmentCode;
+//
+//    private String classCode;
+//
+//    private String gradeCode;
+//
+//    /**
+//     * 标题
+//     */
+//    private String title;
+//
+//    /**
+//     * 正文
+//     */
+//    private String text;
+//
+//    /**
+//     * 发送时间
+//     */
+//    private Date sendTime;
+//
+//    /**
+//     * 发送人id
+//     */
+//    private Long sendUserId;
+//
+//    /**
+//     * 发送人姓名
+//     */
+//    private String sendUserName;
+//
+//    /**
+//     * 收件人id
+//     */
+//    private List<Long> receiveIds;
 
-    private Integer timing;
-
-    private Date submitTime;
 
 }

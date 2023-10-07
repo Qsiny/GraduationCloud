@@ -1,9 +1,10 @@
 package com.qsiny.service;
 
-import com.qsiny.dto.MessageDto;
 import com.qsiny.entity.ResponseResult;
 
 public interface MessageService {
 
-    ResponseResult<Void> sendMessage(MessageDto messageDto);
+
+    <T> ResponseResult<Void> sendMessage(String exchangeName, String routingKey, Integer type, T dto, Long sendTime) ;
+
 }
